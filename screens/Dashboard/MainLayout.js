@@ -45,7 +45,7 @@ const TabIndicator = ({measureLayout, scrollX}) => {
   );
 };
 
-const Tabs = ({scrollX}) => {
+const Tabs = ({scrollX, onBottomTabPress}) => {
   const containerRef = React.useRef();
   const [measureLayout, setMeasureLayout] = React.useState([]);
 
@@ -95,8 +95,7 @@ const Tabs = ({scrollX}) => {
               alignItems: 'center',
               justifyContent: 'center',
             }}
-            //onPress
-          >
+            onPress={() => onBottomTabPress(index)}>
             <Image
               source={item.icon}
               resizeMode="contain"
@@ -123,6 +122,12 @@ const Tabs = ({scrollX}) => {
 const MainLayout = () => {
   const flatListRef = React.useRef();
   const scrollX = React.useRef(new Animated.Value(0)).current;
+
+  const onBottomTabPress = React.useCallback(bottomTabIndex => {
+    flatListRef?.current?.scrollToOffset({
+      offset: bottomTabIndex * SIZES.width,
+    });
+  });
 
   function renderContent() {
     return (
@@ -179,7 +184,7 @@ const MainLayout = () => {
             width: '100%',
             height: 85,
           }}>
-          <Tabs scrollX={scrollX} />
+          <Tabs scrollX={scrollX} onBottomTabPress={onBottomTabPress} />
         </View>
       </View>
     );
