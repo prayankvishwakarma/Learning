@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {SIZES, COLORS, FONTS, icons} from '../constants';
-
+import {IconLabel} from '../components';
 const VerticalCourseCard = ({containerStyle, course}) => {
   return (
     <TouchableOpacity
@@ -55,10 +55,22 @@ const VerticalCourseCard = ({containerStyle, course}) => {
             style={{
               flex: 1,
               ...FONTS.h3,
-              fontSize: 18,
+              fontSize: 17,
+              color: COLORS.black,
+              fontWeight: '600',
             }}>
             {course.title}
           </Text>
+
+          {/* Course title */}
+
+          <IconLabel
+            icon={icons.time}
+            label={course.duration}
+            containerStyle={{
+              marginTop: SIZES.base,
+            }}
+          />
         </View>
       </View>
     </TouchableOpacity>
