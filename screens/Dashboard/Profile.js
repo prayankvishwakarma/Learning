@@ -13,9 +13,14 @@ import {
   LineDivider,
   ProgressBar,
   ProfileValue,
+  ProfileRadioButton,
 } from '../../components';
 import {COLORS, FONTS, SIZES, icons, images} from '../../constants';
 const Profile = () => {
+  const [newCourseNotification, setNewCourseNotification] =
+    React.useState(false);
+  const [studyReminder, setStudyReminder] = React.useState(false);
+
   function renderHeader() {
     return (
       <View
@@ -170,7 +175,60 @@ const Profile = () => {
   function renderProfileSection1() {
     return (
       <View style={styles.profileSectionContainer}>
-        <ProfileValue icon={icons.profile} label="Name" value="Justin Bieber" />
+        <ProfileValue
+          icon={icons.profile}
+          label="Name"
+          value="Justin john Bieber"
+        />
+
+        <LineDivider />
+
+        <ProfileValue
+          icon={icons.email}
+          label="Email"
+          value="justinbieber@gmail.com"
+        />
+
+        <LineDivider />
+
+        <ProfileValue
+          icon={icons.password}
+          label="Password"
+          value="updated 2 weeks ago"
+        />
+        <LineDivider />
+
+        <ProfileValue
+          icon={icons.call}
+          label="Contact number"
+          value="+91 7894561230"
+        />
+      </View>
+    );
+  }
+
+  function renderProfileSection2() {
+    return (
+      <View style={styles.profileSectionContainer}>
+        <ProfileValue icon={icons.star_1} value="Favourites" />
+        <LineDivider />
+        <ProfileRadioButton
+          icon={icons.new_icon}
+          label="New Course Notifications"
+          isSelected={newCourseNotification}
+          onPress={() => {
+            setNewCourseNotification(!newCourseNotification);
+          }}
+        />
+        <LineDivider />
+        <ProfileRadioButton
+          icon={icons.reminder}
+          label="Study Reminder"
+          isSelected={studyReminder}
+          onPress={() => {
+            setStudyReminder(!studyReminder);
+          }}
+        />
       </View>
     );
   }
@@ -193,6 +251,9 @@ const Profile = () => {
 
         {/* Profile Section 1 */}
         {renderProfileSection1()}
+
+        {/* Profile Section 2 */}
+        {renderProfileSection2()}
       </ScrollView>
     </View>
   );

@@ -7,6 +7,7 @@ import CategoryCard from './CategoryCard';
 import HorizontalCourseCard from './HorizontalCourseCard';
 import ProgressBar from './ProgressBar';
 import ProfileValue from './ProfileValue';
+import ProfileRadioButton from './ProfileRadioButton';
 
 export {
   IconButton,
@@ -18,4 +19,5 @@ export {
   HorizontalCourseCard,
   ProgressBar,
   ProfileValue,
+  ProfileRadioButton,
 };

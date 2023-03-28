@@ -48,12 +48,22 @@ const ProfileValue = ({icon, label, value, onPress}) => {
         )}
         <Text
           style={{
-            color: COLORS.gray50,
+            color: COLORS.gray70,
             ...FONTS.h3,
           }}>
           {value}
         </Text>
       </View>
+
+      {/* Icon */}
+
+      <Image
+        source={icons.right_arrow}
+        style={{
+          width: 15,
+          height: 15,
+        }}
+      />
     </TouchableOpacity>
   );
 };
