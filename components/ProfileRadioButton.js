@@ -3,8 +3,9 @@ import {View, Text, Image, TouchableOpacity, Animated} from 'react-native';
 import {flingGestureHandlerProps} from 'react-native-gesture-handler/lib/typescript/handlers/FlingGestureHandler';
 import {ComplexAnimationBuilder} from 'react-native-reanimated';
 import {COLORS, FONTS, SIZES} from '../constants';
+import {connect} from 'react-redux';
 
-const ProfileRadioButton = ({icon, label, isSelected, onPress}) => {
+const ProfileRadioButton = ({icon, label, isSelected, onPress, appTheme}) => {
   const radioAnimated = React.useRef(new Animated.Value(0)).current;
 
   const circleColorAnimated = radioAnimated.interpolate({
@@ -47,7 +48,7 @@ const ProfileRadioButton = ({icon, label, isSelected, onPress}) => {
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: 20,
-          backgroundColor: COLORS.additionalColor11,
+          backgroundColor: appTheme?.backgroundColor3,
         }}>
         <Image
           source={icon}
@@ -67,7 +68,7 @@ const ProfileRadioButton = ({icon, label, isSelected, onPress}) => {
         }}>
         <Text
           style={{
-            color: COLORS.gray70,
+            color: appTheme?.textColor,
             ...FONTS.h3,
           }}>
           {label}
@@ -100,11 +101,21 @@ const ProfileRadioButton = ({icon, label, isSelected, onPress}) => {
             borderRadius: 15,
             borderWidth: 5,
             borderColor: circleColorAnimated, //Animated
-            backgroundColor: COLORS.white,
+            backgroundColor: appTheme?.backgroundColor1,
           }}
         />
       </TouchableOpacity>
     </View>
   );
 };
-export default ProfileRadioButton;
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileRadioButton);

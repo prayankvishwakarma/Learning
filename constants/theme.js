@@ -92,6 +92,7 @@ export const darkTheme = {
   tintColor: COLORS.white,
   dotColor1: COLORS.white,
   dotColor2: COLORS.primary,
+  buttonColor: COLORS.gray90,
 };
 
 export const lightTheme = {
@@ -117,6 +118,7 @@ export const lightTheme = {
   tintColor: COLORS.black,
   dotColor1: COLORS.gray20,
   dotColor2: COLORS.primary3,
+  buttonColor: COLORS.gray5,
 };
 
 export const selectedTheme = darkTheme;

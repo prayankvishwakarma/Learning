@@ -1,6 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import {FONTS, COLORS} from '../constants';
+import {connect} from 'react-redux';
 
 const TextButton = ({
   contentContainerStyle,
@@ -8,6 +9,7 @@ const TextButton = ({
   label,
   labelStyle,
   onPress,
+  appTheme,
 }) => {
   return (
     <TouchableOpacity
@@ -30,4 +32,15 @@ const TextButton = ({
     </TouchableOpacity>
   );
 };
-export default TextButton;
+
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TextButton);

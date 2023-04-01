@@ -10,6 +10,7 @@ import {
 import {Shadow} from 'react-native-shadow-2';
 import {Home, Profile, Search} from '../../screens';
 import {COLORS, SIZES, FONTS, constants} from '../../constants';
+import {connect} from 'react-redux';
 const bottom_tabs = constants.bottom_tabs.map(bottom_tab => ({
   ...bottom_tab,
   ref: React.createRef(),
@@ -119,7 +120,7 @@ const Tabs = ({scrollX, onBottomTabPress}) => {
   );
 };
 
-const MainLayout = () => {
+const MainLayout = ({appTheme}) => {
   const flatListRef = React.useRef();
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
@@ -173,16 +174,17 @@ const MainLayout = () => {
     return (
       <View
         style={{
-          marginbottom: 20,
+          paddingBottom: SIZES.height > 800 ? 10 : 5,
           paddingHorizontal: SIZES.padding,
           paddingVertical: SIZES.radius,
+          backgroundColor: appTheme?.backgroundColor1,
         }}>
         <View
           style={{
             borderRadius: SIZES.radius,
-            backgroundColor: COLORS.primary3,
+            backgroundColor: appTheme?.backgroundColor2,
             width: '100%',
-            height: 85,
+            height: 70,
           }}>
           <Tabs scrollX={scrollX} onBottomTabPress={onBottomTabPress} />
         </View>
@@ -205,5 +207,14 @@ const MainLayout = () => {
     </View>
   );
 };
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+  };
+}
 
-export default MainLayout;
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);

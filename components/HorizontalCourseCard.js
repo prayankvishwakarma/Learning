@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import {IconLabel} from '../components';
 import {SIZES, COLORS, FONTS, icons} from '../constants';
+import {connect} from 'react-redux';
 
-const HorizontalCourseCard = ({containerStyle, course}) => {
+const HorizontalCourseCard = ({containerStyle, course, appTheme}) => {
   return (
     <TouchableOpacity
       style={{
@@ -64,7 +65,7 @@ const HorizontalCourseCard = ({containerStyle, course}) => {
           style={{
             ...FONTS.h3,
             fontSize: 18,
-            color: COLORS.gray70,
+            color: appTheme?.textColor,
           }}>
           {course.title}
         </Text>
@@ -120,7 +121,7 @@ const HorizontalCourseCard = ({containerStyle, course}) => {
             }}
             labelStyle={{
               marginLeft: 5,
-              color: COLORS.black,
+              color: appTheme?.textColor,
               ...FONTS.h3,
             }}
           />
@@ -129,4 +130,17 @@ const HorizontalCourseCard = ({containerStyle, course}) => {
     </TouchableOpacity>
   );
 };
-export default HorizontalCourseCard;
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HorizontalCourseCard);

@@ -7,6 +7,9 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
+import {connect} from 'react-redux';
+import {toggleTheme} from '../../stores/themeActions';
+
 import {
   IconButton,
   TextButton,
@@ -16,10 +19,22 @@ import {
   ProfileRadioButton,
 } from '../../components';
 import {COLORS, FONTS, SIZES, icons, images} from '../../constants';
-const Profile = () => {
+const Profile = ({appTheme, toggleTheme}) => {
   const [newCourseNotification, setNewCourseNotification] =
     React.useState(false);
   const [studyReminder, setStudyReminder] = React.useState(false);
+
+  //Handler
+
+  function toggleThemeHandler() {
+    if (appTheme?.name == 'light') {
+      toggleTheme('dark');
+    } else {
+      toggleTheme('light');
+    }
+  }
+
+  //Render
 
   function renderHeader() {
     return (
@@ -33,15 +48,16 @@ const Profile = () => {
         <Text
           style={{
             ...FONTS.h1,
-            color: COLORS.black,
+            color: appTheme?.textColor,
           }}>
           Profile
         </Text>
         <IconButton
           icon={icons.sun}
           iconStyle={{
-            tintColor: COLORS.black,
+            tintColor: appTheme?.tintColor,
           }}
+          onPress={() => toggleThemeHandler()}
         />
       </View>
     );
@@ -56,7 +72,7 @@ const Profile = () => {
           paddingHorizontal: SIZES.radius,
           paddingVertical: 20,
           borderRadius: SIZES.radius,
-          backgroundColor: COLORS.primary3,
+          backgroundColor: appTheme?.backgroundColor2,
         }}>
         {/* Profile Image */}
         <TouchableOpacity
@@ -161,10 +177,10 @@ const Profile = () => {
               marginTop: SIZES.padding,
               paddingHorizontal: SIZES.radius,
               borderRadius: 20,
-              backgroundColor: COLORS.white,
+              backgroundColor: appTheme?.backgroundColor4,
             }}
             labelStyle={{
-              color: COLORS.primary,
+              color: appTheme?.textColor2,
             }}
           />
         </View>
@@ -237,7 +253,7 @@ const Profile = () => {
     <View
       style={{
         flex: 1,
-        backgroundColor: COLORS.white,
+        backgroundColor: appTheme?.backgroundColor1,
       }}>
       {/* Header */}
       {renderHeader()}
@@ -269,4 +285,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+    error: state.error,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleTheme: themeType => {
+      return dispatch(toggleTheme(themeType));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

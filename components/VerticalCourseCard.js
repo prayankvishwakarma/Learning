@@ -2,7 +2,8 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {SIZES, COLORS, FONTS, icons} from '../constants';
 import {IconLabel} from '../components';
-const VerticalCourseCard = ({containerStyle, course}) => {
+import {connect} from 'react-redux';
+const VerticalCourseCard = ({containerStyle, course, appTheme}) => {
   return (
     <TouchableOpacity
       style={{
@@ -56,7 +57,7 @@ const VerticalCourseCard = ({containerStyle, course}) => {
               flex: 1,
               ...FONTS.h3,
               fontSize: 17,
-              color: COLORS.black,
+              color: appTheme?.textColor,
               fontWeight: '600',
             }}>
             {course.title}
@@ -76,4 +77,14 @@ const VerticalCourseCard = ({containerStyle, course}) => {
     </TouchableOpacity>
   );
 };
-export default VerticalCourseCard;
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VerticalCourseCard);
