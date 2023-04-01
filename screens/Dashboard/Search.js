@@ -3,6 +3,7 @@ import {View, Text, Image, TextInput} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {TextButton, CategoryCard} from '../../components';
 import {COLORS, SIZES, FONTS, icons, dummyData} from '../../constants';
+import {connect} from 'react-redux';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -11,7 +12,11 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import {SimultaneousGesture} from 'react-native-gesture-handler/lib/typescript/handlers/gestures/gestureComposition';
-const Search = () => {
+import {useNavigation} from '@react-navigation/native';
+
+const Search = ({appTheme}) => {
+  const navigation = useNavigation();
+
   const scrollViewRef = React.useRef();
 
   const scrollY = useSharedValue(0);
@@ -29,7 +34,7 @@ const Search = () => {
           style={{
             marginHorizontal: SIZES.padding,
             ...FONTS.h2,
-            color: COLORS.black,
+            color: appTheme?.textColor,
           }}>
           Top Searches
         </Text>
@@ -55,7 +60,7 @@ const Search = () => {
                     ? SIZES.padding
                     : 0,
                 borderRadius: SIZES.radius,
-                backgroundColor: COLORS.gray10,
+                backgroundColor: appTheme?.buttonColor,
               }}
               labelStyle={{
                 color: COLORS.gray50,
@@ -78,7 +83,7 @@ const Search = () => {
           style={{
             marginHorizontal: SIZES.padding,
             ...FONTS.h2,
-            color: COLORS.black,
+            color: appTheme?.textColor,
           }}>
           Browse Categories
         </Text>
@@ -94,6 +99,7 @@ const Search = () => {
           }}
           renderItem={({item, index}) => (
             <CategoryCard
+              SharedElementPrefix="Search"
               category={item}
               containerStyle={{
                 height: 130,
@@ -101,6 +107,12 @@ const Search = () => {
                 marginTop: SIZES.radius,
                 marginLeft: (index + 1) % 2 == 0 ? SIZES.radius : SIZES.padding,
               }}
+              onPress={() =>
+                navigation.navigate('CourseListing', {
+                  category: item,
+                  SharedElementPrefix: 'Search',
+                })
+              }
             />
           )}
         />
@@ -147,7 +159,7 @@ const Search = () => {
             width: SIZES.width - SIZES.padding * 2,
             paddingHorizontal: SIZES.radius,
             borderRadius: SIZES.radius,
-            backgroundColor: COLORS.gray5,
+            backgroundColor: appTheme?.buttonColor,
           }}>
           <Image
             source={icons.search}
@@ -177,7 +189,7 @@ const Search = () => {
     <View
       style={{
         flex: 1,
-        backgroundColor: COLORS.white,
+        backgroundColor: appTheme?.backgroundColor1,
       }}>
       <Animated.ScrollView
         ref={scrollViewRef}
@@ -214,4 +226,14 @@ const Search = () => {
   );
 };
 
-export default Search;
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

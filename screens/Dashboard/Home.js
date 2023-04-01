@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, ImageBackground, Image, ScrollView} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {SimultaneousGesture} from 'react-native-gesture-handler/lib/typescript/handlers/gestures/gestureComposition';
+import {useNavigation} from '@react-navigation/native';
 import {
   IconButton,
   TextButton,
@@ -11,6 +12,8 @@ import {
   HorizontalCourseCard,
 } from '../../components';
 import {COLORS, FONTS, SIZES, icons, images, dummyData} from '../../constants';
+import {connect} from 'react-redux';
+import appTheme from '../../constants/theme';
 
 const Section = ({containerStyle, title, onPress, children}) => {
   return (
@@ -27,7 +30,7 @@ const Section = ({containerStyle, title, onPress, children}) => {
           style={{
             flex: 1,
             ...FONTS.h2,
-            color: COLORS.gray70,
+            color: appTheme?.textColor,
             fontWeight: '500',
           }}>
           {title}
@@ -48,7 +51,8 @@ const Section = ({containerStyle, title, onPress, children}) => {
     </View>
   );
 };
-const Home = () => {
+const Home = ({appTheme}) => {
+  const navigation = useNavigation();
   function renderHeader() {
     return (
       <View
@@ -67,7 +71,7 @@ const Home = () => {
           }}>
           <Text
             style={{
-              color: COLORS.black,
+              color: appTheme?.textColor,
               ...FONTS.h2,
               fontWeight: '500',
             }}>
@@ -86,7 +90,7 @@ const Home = () => {
         <IconButton
           icon={icons.notification}
           iconStyle={{
-            tintColor: COLORS.black,
+            tintColor: appTheme?.tintColor,
           }}
         />
       </View>
@@ -165,7 +169,7 @@ const Home = () => {
         data={dummyData.courses_list_1}
         listKey="Courses"
         keyExtractor={item => `Courses-${item.id}`}
-        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
           marginTop: SIZES.padding,
         }}
@@ -199,12 +203,19 @@ const Home = () => {
           }}
           renderItem={({item, index}) => (
             <CategoryCard
+              SharedElementPrefix="Home"
               category={item}
               containerStyle={{
                 marginLeft: index == 0 ? SIZES.padding : SIZES.base,
                 marginRight:
                   index == dummyData.categories.length - 1 ? SIZES.padding : 0,
               }}
+              onPress={() =>
+                navigation.navigate('CourseListing', {
+                  category: item,
+                  SharedElementPrefix: 'Home',
+                })
+              }
             />
           )}
         />
@@ -253,7 +264,7 @@ const Home = () => {
     <View
       style={{
         flex: 1,
-        backgroundColor: COLORS.white,
+        backgroundColor: appTheme?.backgroundColor1,
       }}>
       {/* Header */}
       {renderHeader()}
@@ -282,4 +293,14 @@ const Home = () => {
   );
 };
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
