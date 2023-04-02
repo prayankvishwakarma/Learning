@@ -10,7 +10,12 @@ import Animated, {
   withTiming,
   runOnJS,
 } from 'react-native-reanimated';
-import {IconButton, HorizontalCourseCard, LineDivider} from '../../components';
+import {
+  IconButton,
+  HorizontalCourseCard,
+  LineDivider,
+  FilterModal,
+} from '../../components';
 import {COLORS, FONTS, SIZES, images, icons, dummyData} from '../../constants';
 import {SharedElement} from 'react-navigation-shared-element';
 
@@ -28,6 +33,9 @@ const CourseListing = ({navigation, route}) => {
   });
 
   const headerSharedValue = useSharedValue(80);
+
+  const filterModalSharedValue1 = useSharedValue(SIZES.height);
+  const filterModalSharedValue2 = useSharedValue(SIZES.height);
 
   //Handler
 
@@ -291,6 +299,18 @@ const CourseListing = ({navigation, route}) => {
                 borderRadius: 10,
                 backgroundColor: COLORS.primary,
               }}
+              onPress={() => {
+                filterModalSharedValue1.value = withTiming(0, {
+                  duration: 100,
+                });
+
+                filterModalSharedValue2.value = withDelay(
+                  100,
+                  withTiming(0, {
+                    duration: 500,
+                  }),
+                );
+              }}
             />
           </View>
         }
@@ -325,6 +345,12 @@ const CourseListing = ({navigation, route}) => {
 
       {/* Header */}
       {renderHeader()}
+
+      {/* Filter Modal */}
+      <FilterModal
+        filterModalSharedValue1={filterModalSharedValue1}
+        filterModalSharedValue2={filterModalSharedValue2}
+      />
     </View>
   );
 };
