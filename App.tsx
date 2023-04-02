@@ -12,7 +12,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import themeReducer from './stores/themeReducer';
-import {MainLayout, CourseListing} from './screens';
+import {MainLayout, CourseListing, CourseDetails} from './screens';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import {CardStyleInterpolators} from '@react-navigation/stack';
 
@@ -51,11 +51,14 @@ function App(): JSX.Element {
           initialRouteName={'Dashboard'}
           detachInactiveScreens={false}>
           <Stack.Screen name="Dashboard" component={MainLayout} />
+
           <Stack.Screen
             name="CourseListing"
             component={CourseListing}
             options={() => options}
           />
+
+          <Stack.Screen name="CourseDetails" component={CourseDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

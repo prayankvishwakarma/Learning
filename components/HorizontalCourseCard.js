@@ -10,13 +10,14 @@ import {IconLabel} from '../components';
 import {SIZES, COLORS, FONTS, icons} from '../constants';
 import {connect} from 'react-redux';
 
-const HorizontalCourseCard = ({containerStyle, course, appTheme}) => {
+const HorizontalCourseCard = ({containerStyle, course, appTheme, onPress}) => {
   return (
     <TouchableOpacity
       style={{
         flexDirection: 'row',
         ...containerStyle,
-      }}>
+      }}
+      onPress={onPress}>
       {/* Thumbnail */}
       <ImageBackground
         source={course.thumbnail}

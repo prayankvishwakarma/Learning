@@ -321,6 +321,9 @@ const CourseListing = ({navigation, route}) => {
               marginVertical: SIZES.padding,
               marginTop: index == 0 ? SIZES.radius : SIZES.padding,
             }}
+            onPress={() =>
+              navigation.navigate('CourseDetails', {selectedCourse: item})
+            }
           />
         )}
         ItemSeparatorComponent={() => (
@@ -356,15 +359,17 @@ const CourseListing = ({navigation, route}) => {
 };
 
 CourseListing.SharedElement = (route, otherRoute, showing) => {
-  const {category, SharedElementPrefix} = route.params;
-  return [
-    {
-      id: `${SharedElementPrefix}-CategoryCard-Bg-${category?.id}`,
-    },
-    {
-      id: `${SharedElementPrefix}-CategoryCard-Title-${category?.id}`,
-    },
-  ];
+  if (otherRoute.name === 'Dashboard') {
+    const {category, SharedElementPrefix} = route.params;
+    return [
+      {
+        id: `${SharedElementPrefix}-CategoryCard-Bg-${category?.id}`,
+      },
+      {
+        id: `${SharedElementPrefix}-CategoryCard-Title-${category?.id}`,
+      },
+    ];
+  }
 };
 
 export default CourseListing;
