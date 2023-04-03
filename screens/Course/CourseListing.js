@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
   runOnJS,
 } from 'react-native-reanimated';
+import {connect} from 'react-redux';
 import {
   IconButton,
   HorizontalCourseCard,
@@ -23,7 +24,7 @@ const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList);
 
 const HEADER_HEIGHT = 250;
 
-const CourseListing = ({navigation, route}) => {
+const CourseListing = ({navigation, route, appTheme}) => {
   const {category, sharedElementPrefix} = route.params;
 
   const flatlistRef = React.useRef();
@@ -278,7 +279,7 @@ const CourseListing = ({navigation, route}) => {
               style={{
                 flex: 1,
                 ...FONTS.body3,
-                color: COLORS.black,
+                color: COLORS.gray30,
               }}>
               5761 Results
             </Text>
@@ -341,7 +342,7 @@ const CourseListing = ({navigation, route}) => {
     <View
       style={{
         flex: 1,
-        backgroundColor: COLORS.white,
+        backgroundColor: appTheme?.backgroundColor1,
       }}>
       {/* Results */}
       {renderResults()}
@@ -372,4 +373,14 @@ CourseListing.SharedElement = (route, otherRoute, showing) => {
   }
 };
 
-export default CourseListing;
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseListing);
