@@ -160,7 +160,7 @@ const course_details = {
       title: '2. User Interface',
       duration: '1:15:00',
       size: '200 MB',
-      progress: '100%',
+      progress: '60%',
       is_playing: true,
       is_complete: false,
       is_lock: false,
@@ -222,81 +222,81 @@ const course_details = {
       thumbnail: require('../assets/images/sketch.png'),
     },
   ],
-  discussions: [
-    {
-      id: 0,
-      profile: require('../assets/images/profile.png'),
-      name: 'ByProgrammers',
-      no_of_comments: '11 comments',
-      no_of_likes: '72 likes',
-      posted_on: '5 days ago',
-      comment:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      replies: [
-        {
-          id: 0,
-          profile: require('../assets/images/student_1.png'),
-          name: 'ByProgrammers',
-          posted_on: '4 days ago',
-          comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        },
-        {
-          id: 1,
-          profile: require('../assets/images/student_1.png'),
-          name: 'ByProgrammers',
-          posted_on: '4 days ago',
-          comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        },
-        {
-          id: 2,
-          profile: require('../assets/images/student_1.png'),
-          name: 'ByProgrammers',
-          posted_on: '4 days ago',
-          comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        },
-        {
-          id: 3,
-          profile: require('../assets/images/student_1.png'),
-          name: 'ByProgrammers',
-          posted_on: '4 days ago',
-          comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        },
-      ],
-    },
-    {
-      id: 1,
-      profile: require('../assets/images/profile.png'),
-      name: 'ByProgrammers',
-      no_of_comments: '21 comments',
-      no_of_likes: '372 likes',
-      posted_on: '14 days ago',
-      comment:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      replies: [
-        {
-          id: 0,
-          profile: require('../assets/images/student_1.png'),
-          name: 'ByProgrammers',
-          posted_on: '7 days ago',
-          comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        },
-        {
-          id: 1,
-          profile: require('../assets/images/student_1.png'),
-          name: 'ByProgrammers',
-          posted_on: '7 days ago',
-          comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        },
-        {
-          id: 2,
-          profile: require('../assets/images/student_1.png'),
-          name: 'ByProgrammers',
-          posted_on: '7 days ago',
-          comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        },
-      ],
-    },
-  ],
+  // discussions: [
+  //   {
+  //     id: 0,
+  //     profile: require('../assets/images/profile.png'),
+  //     name: 'ByProgrammers',
+  //     no_of_comments: '11 comments',
+  //     no_of_likes: '72 likes',
+  //     posted_on: '5 days ago',
+  //     comment:
+  //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //     replies: [
+  //       {
+  //         id: 0,
+  //         profile: require('../assets/images/student_1.png'),
+  //         name: 'ByProgrammers',
+  //         posted_on: '4 days ago',
+  //         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  //       },
+  //       {
+  //         id: 1,
+  //         profile: require('../assets/images/student_1.png'),
+  //         name: 'ByProgrammers',
+  //         posted_on: '4 days ago',
+  //         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  //       },
+  //       {
+  //         id: 2,
+  //         profile: require('../assets/images/student_1.png'),
+  //         name: 'ByProgrammers',
+  //         posted_on: '4 days ago',
+  //         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  //       },
+  //       {
+  //         id: 3,
+  //         profile: require('../assets/images/student_1.png'),
+  //         name: 'ByProgrammers',
+  //         posted_on: '4 days ago',
+  //         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     id: 1,
+  //     profile: require('../assets/images/profile.png'),
+  //     name: 'ByProgrammers',
+  //     no_of_comments: '21 comments',
+  //     no_of_likes: '372 likes',
+  //     posted_on: '14 days ago',
+  //     comment:
+  //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  //     replies: [
+  //       {
+  //         id: 0,
+  //         profile: require('../assets/images/student_1.png'),
+  //         name: 'ByProgrammers',
+  //         posted_on: '7 days ago',
+  //         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  //       },
+  //       {
+  //         id: 1,
+  //         profile: require('../assets/images/student_1.png'),
+  //         name: 'ByProgrammers',
+  //         posted_on: '7 days ago',
+  //         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  //       },
+  //       {
+  //         id: 2,
+  //         profile: require('../assets/images/student_1.png'),
+  //         name: 'ByProgrammers',
+  //         posted_on: '7 days ago',
+  //         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  //       },
+  //     ],
+  //   },
+  // ],
 };
 
 // const sample_video_url = {
